@@ -1,0 +1,26 @@
+{
+  "name": "bsAlerts",
+  "title": "Bootstrap Alerts",
+  "version": "0.1.0",
+  "description": "A jQuery plugin for displaying Bootstrap alerts via jQuery events.",
+  "homepage": "http://eltimn.github.com/jquery-bs-alerts/",
+  "keywords": [
+    "bootstrap",
+    "alert"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.7.4",
+    "bootstrap": ">= 2.1.1"
+  },
+  "author": {
+    "name": "Tim Nelson",
+    "email": "tim@eltimn.com",
+    "url": "http://eltimn.com/"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ]
+}

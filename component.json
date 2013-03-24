@@ -1,0 +1,12 @@
+{
+  "name": "bsAlerts",
+  "version": "0.1.0",
+  "main": "build/jquery.bsAlerts.min.js",
+  "dependencies": {
+    "jquery": ">= 1.7.4",
+    "bootstrap": ">= 2.1.1"
+  },
+  "ignore": [
+    "examples/"
+  ]
+}
