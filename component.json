@@ -1,6 +1,6 @@
 {
   "name": "bsAlerts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "build/jquery.bsAlerts.min.js",
   "dependencies": {
     "jquery": ">= 1.7.4",
