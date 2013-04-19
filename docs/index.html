@@ -61,17 +61,21 @@
                     <div class="page-header">
                         <h1>Example</h1>
                     </div>
-                    <div data-alerts="alerts" data-titles="{&quot;warning&quot;: &quot;&lt;em&gt;Warning!&lt;/em&gt;&quot;}" data-ids="myid"></div>
+                    <div data-alerts="alerts" data-titles="{&quot;warning&quot;: &quot;&lt;em&gt;Warning!&lt;/em&gt;&quot;}" data-ids="myid" data-fade="3000"></div>
+                    <button id="warn-me" class="btn">Click to see a warning alert</button>
+                    <hr />
 <pre class="prettyprint linenums">
-&lt;div data-alerts="alerts" data-titles="{'warning': '&lt;em&gt;Warning!&lt;/em&gt;'}" data-ids="myid"&gt;&lt;/div&gt;
-
+&lt;div data-alerts="alerts" data-titles="{'warning': '&lt;em&gt;Warning!&lt;/em&gt;'}" data-ids="myid" data-fade="3000"&gt;&lt;/div&gt;
+&lt;button id="warn-me" class="btn"&gt;Click to see a warning alert&lt;/button&gt;
 &lt;script&gt;
-$(document).trigger("add-alerts", [
-  {
-    'message': "This is a warning.",
-    'priority': 'warning'
-  }
-]);
+$("#warn-me").click(function() {
+  $(document).trigger("add-alerts", [
+    {
+      'message': "This is a warning.",
+      'priority': 'warning'
+    }
+  ]);
+});
 &lt;/script&gt;
 </pre>
                 <p><strong>Priority:</strong> error, warning, info, success</p>
@@ -116,6 +120,12 @@ $(document).trigger("add-alerts", [
                           events in the form 'set-alert-id-{alert_id}' will also be listened for. Works with
                           <a href="http://eltimn.github.com/jquery-bs-formalerts/">jQuery-bsFormAlerts</a>.
                         </td>
+                      </tr>
+                      <tr>
+                        <td>fade</td>
+                        <td>integer</td>
+                        <td>0</td>
+                        <td>If set to an integer greater than 0, the alerts will be faded out and removed after the given number of milliseconds.</td>
                       </tr>
                     </tbody>
                   </table>
@@ -184,7 +194,7 @@ $(document).trigger("set-alert-id-myid", {
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/prettify.js"></script>
-    <script src="../src/jquery.bsAlerts.js"></script>
+    <script src="js/jquery.bsAlerts.js"></script>
     <script>
       $(function(){
         var $window = $(window);
@@ -201,12 +211,14 @@ $(document).trigger("set-alert-id-myid", {
         // make code pretty
         window.prettyPrint && prettyPrint();
 
-        $(document).trigger("add-alerts", [
-          {
-            'message': "This is a warning.",
-            'priority': 'warning'
-          }
-        ]);
+        $("#warn-me").click(function() {
+          $(document).trigger("add-alerts", [
+            {
+              'message': "This is a warning.",
+              'priority': 'warning'
+            }
+          ]);
+        });
       });
     </script>
   </body>

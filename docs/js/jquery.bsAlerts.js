@@ -43,7 +43,7 @@
       self.addAlertsToContainer(alerts.infos);
       self.addAlertsToContainer(alerts.succs);
 
-      var fadeInt = parseInt(self.options.fade);
+      var fadeInt = parseInt(self.options.fade, 10);
       if (!isNaN(fadeInt) && fadeInt > 0) {
         clearTimeout(fadeTimer);
         fadeTimer = setTimeout(self.fade, fadeInt);
