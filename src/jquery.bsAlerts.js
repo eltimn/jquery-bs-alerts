@@ -7,10 +7,10 @@
   /* BsAlerts class definition
    * ========================== */
   var BsAlerts = function(element, options) {
-    var self = this;
+    var self = this, fadeTimer;
 
-    this.element = element;
-    this.options = $.extend({}, $.fn.bsAlerts.defaults, options);
+    self.element = element;
+    self.options = $.extend({}, $.fn.bsAlerts.defaults, options);
 
     $(document).on("add-alerts", function() {
       var alerts = Array.prototype.slice.call(arguments, 1);
@@ -31,21 +31,32 @@
         });
       }
     });
-  };
 
-  BsAlerts.prototype = {
-    constructor: BsAlerts,
-    clearAlerts: function() {
+    self.clearAlerts = function() {
       $(this.element).html("");
-    },
-    addAlerts: function(data) {
+    };
+
+    self.addAlerts = function(data) {
       var alerts = splitAlerts([].concat(data));
-      this.addAlertsToContainer(alerts.errs);
-      this.addAlertsToContainer(alerts.warns);
-      this.addAlertsToContainer(alerts.infos);
-      this.addAlertsToContainer(alerts.succs);
-    },
-    buildNoticeContainer: function(msgs) {
+      self.addAlertsToContainer(alerts.errs);
+      self.addAlertsToContainer(alerts.warns);
+      self.addAlertsToContainer(alerts.infos);
+      self.addAlertsToContainer(alerts.succs);
+
+      var fadeInt = parseInt(self.options.fade);
+      if (!isNaN(fadeInt) && fadeInt > 0) {
+        clearTimeout(fadeTimer);
+        fadeTimer = setTimeout(self.fade, fadeInt);
+      }
+    };
+
+    self.fade = function() {
+      $("[data-alerts-container]").fadeOut('slow', function() {
+        $(this).remove();
+      });
+    };
+
+    self.buildNoticeContainer = function(msgs) {
       if (msgs.length > 0) {
 
         var priority = bsPriority(msgs[0].priority);
@@ -57,7 +68,7 @@
         }).html('&times;');
 
         var $ul = $("<ul/>");
-        attachLIs($ul, msgs);
+        self.attachLIs($ul, msgs);
 
         var $container = $("<div/>", {
           "data-alerts-container": priority,
@@ -72,12 +83,15 @@
           $container.append($("<strong/>").html(title));
         }
 
-        return $container.append($ul);
+        $container.append($ul);
+
+        return $container;
       }
 
       return null;
-    },
-    addAlertsToContainer: function(msgs) {
+    };
+
+    self.addAlertsToContainer = function(msgs) {
       if (msgs.length > 0) {
         var $ele = $(this.element);
         var priority = bsPriority(msgs[0].priority);
@@ -85,14 +99,20 @@
 
         if ($container.length > 0) {
           var $ul = $container.find("ul");
-          attachLIs($ul, msgs);
+          self.attachLIs($ul, msgs);
         }
         else {
-          $container = this.buildNoticeContainer(msgs);
+          $container = self.buildNoticeContainer(msgs);
           $ele.append($container);
         }
       }
-    }
+    };
+
+    self.attachLIs = function($ul, msgs) {
+      $.each(msgs, function(ix, it) {
+        $ul.append($("<li/>").html(it.message));
+      });
+    };
   };
 
   // "private" funcs
@@ -123,12 +143,6 @@
     return it;
   }
 
-  function attachLIs($ul, msgs) {
-    $.each(msgs, function(ix, it) {
-      $ul.append($("<li/>").html(it.message));
-    });
-  }
-
   /* BsAlerts plugin definition
    * ===================== */
 
@@ -153,7 +167,8 @@
 
   $.fn.bsAlerts.defaults = {
     titles: {},
-    ids: ''
+    ids: '',
+    fade: '0'
   };
 
   /* BsAlerts no conflict
