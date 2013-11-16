@@ -113,35 +113,35 @@
         $ul.append($("<li/>").html(it.message));
       });
     };
+
+    // "private" funcs
+    function bsPriority(it) {
+      if (it === "notice") {
+        return "info";
+      }
+      else if (it === "error") {
+        return "danger";
+      }
+      return it;
+    }
+
+    function splitAlerts(alerts) {
+      return {
+        errs: $.grep(alerts, function(it) {
+          return (it.priority === "error" || it.priority === "danger");
+        }),
+        warns: $.grep(alerts, function(it) {
+          return it.priority === "warning";
+        }),
+        infos: $.grep(alerts, function(it) {
+          return (it.priority === "notice" || it.priority === "info");
+        }),
+        succs: $.grep(alerts, function(it) {
+          return it.priority === "success";
+        })
+      };
+    }
   };
-
-  // "private" funcs
-  function splitAlerts(alerts) {
-    return {
-      errs: $.grep(alerts, function(it) {
-        return (it.priority === "error" || it.priority === "danger");
-      }),
-      warns: $.grep(alerts, function(it) {
-        return it.priority === "warning";
-      }),
-      infos: $.grep(alerts, function(it) {
-        return (it.priority === "notice" || it.priority === "info");
-      }),
-      succs: $.grep(alerts, function(it) {
-        return it.priority === "success";
-      })
-    };
-  }
-
-  function bsPriority(it) {
-    if (it === "notice") {
-      return "info";
-    }
-    else if (it === "danger") {
-      return "error";
-    }
-    return it;
-  }
 
   /* BsAlerts plugin definition
    * ===================== */
