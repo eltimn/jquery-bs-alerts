@@ -1,7 +1,7 @@
 {
   "name": "bsAlerts",
   "title": "Bootstrap Alerts",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A jQuery plugin for displaying Bootstrap alerts via jQuery events.",
   "homepage": "http://eltimn.github.com/jquery-bs-alerts/",
   "keywords": [
