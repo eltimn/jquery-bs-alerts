@@ -6,8 +6,8 @@
 - jQuery
 - Bootstrap
 
-[Docs](http://eltimn.github.com/jquery-bs-alerts)
+[Documentation](http://eltimn.github.com/jquery-bs-alerts)
 
-[Download](https://raw.github.com/eltimn/jquery-bs-alerts/master/build/jquery.bsAlerts.min.js)
+[Download](https://github.com/eltimn/jquery-bs-alerts/releases)
 
 **License**: MIT [http://www.opensource.org/licenses/mit-license.php](http://www.opensource.org/licenses/mit-license.php)
