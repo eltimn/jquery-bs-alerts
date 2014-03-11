@@ -64,7 +64,8 @@
         var $dismissBtn = $('<button/>', {
           'type':'button',
           'class':'close',
-          'data-dismiss':'alert'
+          'data-dismiss':'alert',
+          'aria-hidden': true
         }).html('&times;');
 
         var $ul = $("<ul/>");
@@ -72,7 +73,7 @@
 
         var $container = $("<div/>", {
           "data-alerts-container": priority,
-          "class": "alert alert-"+priority
+          "class": "alert alert-dismissable alert-"+priority
         });
 
         $container.append($dismissBtn);
