@@ -78,7 +78,7 @@
 
         $container.append($dismissBtn);
 
-        var title = this.options.titles[priority];
+        var title = this.options.titles[priority] || handleTitle(priority, this.options.titles);
 
         if (title && title.length > 0) {
           $container.append($("<strong/>").html(title));
@@ -124,6 +124,14 @@
         return "danger";
       }
       return it;
+    }
+
+    function handleTitle(priority, titles) {
+      if (titles.notice) {
+        return titles.info = titles.notice;
+      } else if (titles.error) {
+        return titles.danger = titles.error;
+      }
     }
 
     function splitAlerts(alerts) {
