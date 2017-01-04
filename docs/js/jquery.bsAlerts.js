@@ -22,7 +22,7 @@
     });
 
     $.each(this.options.ids.split(","), function(ix, alert_id) {
-      var id = alert_id.trim();
+      var id = $.trim(alert_id);
       if (id.length > 0) {
         var evtId = "set-alert-id-"+id;
         $(document).on(evtId, function() {
