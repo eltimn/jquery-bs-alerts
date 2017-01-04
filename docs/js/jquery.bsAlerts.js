@@ -78,10 +78,11 @@
 
         $container.append($dismissBtn);
 
-        var title = this.options.titles[priority];
-
-        if (title && title.length > 0) {
-          $container.append($("<strong/>").html(title));
+        if (priority in this.options.titles) {
+          var title = this.options.titles[priority];
+          if (title.length > 0) {
+            $container.append($("<strong/>").html(title));
+          }
         }
 
         $container.append($ul);
