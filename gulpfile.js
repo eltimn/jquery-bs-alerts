@@ -1,5 +1,6 @@
 "use strict";
 
+const banner = require("gulp-banner");
 const del = require("del");
 const gulp = require("gulp");
 const jshint = require("gulp-jshint");
@@ -18,6 +19,11 @@ gulp.task("dist", ["clean"], (callback) => {
   runSequence("build", callback);
 });
 
+var comment = `/*! ${pkg.name} v${pkg.version} (${pkg.homepage})
+  * Copyright 2013-${new Date().getFullYear()} eltimn
+  * @license ${pkg.license}
+  */\n`;
+
 gulp.task("js", (callback) => {
   pump([
     gulp.src("docs/js/jquery.bsAlerts.js"),
@@ -26,6 +32,7 @@ gulp.task("js", (callback) => {
     jshint.reporter("fail"),
     uglify(),
     rename({ suffix: ".min" }),
+    banner(comment, { pkg: pkg }),
     gulp.dest("dist/")
   ], callback);
 });
