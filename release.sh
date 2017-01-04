@@ -12,8 +12,12 @@ VERSION=$(cat package.json \
   | sed 's/[",]//g' \
   | tr -d '[[:space:]]')
 
+gulp clean
+gulp dist
+
 # git commit and tag
 git add package.json
+git add dist/
 git commit -m "Release v${VERSION}"
 git tag v${VERSION}
 
