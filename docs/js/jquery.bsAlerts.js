@@ -32,6 +32,14 @@
       }
     });
 
+    // re-map titles
+    var titles = this.options.titles;
+    $.each(Object.keys(titles), function(ix, key) {
+      var title = titles[key];
+      delete titles[key];
+      titles[bsPriority(key)] = title;
+    });
+
     self.clearAlerts = function() {
       $(this.element).html("");
     };
