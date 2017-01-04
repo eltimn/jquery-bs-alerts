@@ -1,69 +1,64 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>jQuery Bootstrap Alerts</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="jQuery plugin for displaying alerts via jQuery events.">
-    <meta name="author" content="Tim Nelson">
+<html lang="en">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
-    <link rel="stylesheet" href="css/docs.css" />
-    <link rel="stylesheet" href="css/prettify.css" />
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="jQuery plugin for displaying alerts via jQuery events.">
+  <meta name="author" content="Tim Nelson">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="assets/js/html5shiv.js"></script>
-    <![endif]-->
-  </head>
-  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+  <title>jQuery Bootstrap Alerts</title>
 
-    <header class="jumbotron subhead">
-      <div class="container">
-        <h1>jQuery Bootstrap Alerts</h1>
-        <p class="lead">Event based Bootstrap alerts.</p>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/prettify.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-target="#sidebar" data-offset="50">
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">jQuery Bootstrap Alerts</a>
       </div>
-    </header>
+    </div>
+  </nav>
 
-    <!-- Add your site or application content here -->
-    <div class="container">
-        <div class="row">
-            <div class="span3 bs-docs-sidebar">
-                <ul class="nav nav-list bs-docs-sidenav">
-                    <li class=""><a href="#overview"><i class="icon-chevron-right"></i> Overview</a></li>
-                    <li class=""><a href="#example"><i class="icon-chevron-right"></i> Example</a></li>
-                    <li class=""><a href="#usage"><i class="icon-chevron-right"></i> Usage</a></li>
-                    <li class=""><a href="#options"><i class="icon-chevron-right"></i> Options</a></li>
-                    <li class=""><a href="#events"><i class="icon-chevron-right"></i> Events</a></li>
-                </ul>
-            </div>
-            <div class="span9">
-                <section id="overview">
-                    <div class="page-header">
-                        <h1>Overview</h1>
-                    </div>
-                    <p>
-                        A jQuery plugin for displaying Bootstrap alerts via jQuery events.
-                    </p>
-                    <p>
-                        <h4>Features</h4>
-                        <ul>
-                            <li>Event based</li>
-                            <li>Modeled after Bootstrap's plugins</li>
-                            <li>Automatic binding via html attributes.</li>
-                        </ul>
-                    </p>
-                    <a class="btn btn-large btn-primary" href="https://github.com/eltimn/jquery-bs-alerts/releases">
-                        <i class="icon-download-alt icon-white"></i> Download</a>
-                </section>
-                <section id="example">
-                    <div class="page-header">
-                        <h1>Example</h1>
-                    </div>
-                    <div data-alerts="alerts" data-titles="{&quot;warning&quot;: &quot;&lt;em&gt;Warning!&lt;/em&gt;&quot;}" data-ids="myid" data-fade="6000"></div>
-                    <button id="warn-me" class="btn">Click to see a warning alert</button>
-                    <hr />
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar" id="sidebar">
+      <ul class="nav nav-sidebar">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#example">Example</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#options">Options</a></li>
+        <li><a href="#events">Events</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <h2 class="sub-header"><a id="overview"></a>Overview</h2>
+      <section>
+        <p>
+          A jQuery plugin for displaying Bootstrap alerts via jQuery events.
+        </p>
+        <p>
+          <h4>Features</h4>
+          <ul>
+            <li>Event based</li>
+            <li>Modeled after Bootstrap's plugins</li>
+            <li>Automatic binding via html attributes.</li>
+          </ul>
+        </p>
+        <a class="btn btn-large btn-primary" href="https://github.com/eltimn/jquery-bs-alerts/releases">
+          <i class="icon-download-alt icon-white"></i> Download
+        </a>
+        <br /><br />
+      </section>
+      <h2 class="sub-header"><a id="example"></a>Example</h2>
+      <section>
+        <div data-alerts="alerts" data-titles="{&quot;warning&quot;: &quot;&lt;em&gt;Warning!&lt;/em&gt;&quot;}" data-ids="myid" data-fade="6000"></div>
+        <button id="warn-me" class="btn">Click to see a warning alert</button>
+        <hr />
 <pre class="prettyprint linenums">
 &lt;div data-alerts="alerts" data-titles="{'warning': '&lt;em&gt;Warning!&lt;/em&gt;'}" data-ids="myid" data-fade="3000"&gt;&lt;/div&gt;
 &lt;button id="warn-me" class="btn"&gt;Click to see a warning alert&lt;/button&gt;
@@ -78,66 +73,60 @@ $("#warn-me").click(function() {
 });
 &lt;/script&gt;
 </pre>
-                <p><strong>Priority:</strong> error/danger, warning, info/notice, success</p>
-                </section>
-                <section id="usage">
-                  <div class="page-header">
-                      <h1>Usage</h1>
-                  </div>
+        <p><strong>Priority:</strong> error/danger, warning, info/notice, success</p>
+      </section>
 
-                  <p>Enable binding of an element via JavaScript:</p>
-                  <pre class="prettyprint linenums">$("#example").bsAlerts({'titles': {'warning': '&lt;em&gt;Warning!&lt;/em&gt;'}});</pre>
+      <h2 class="sub-header"><a id="usage"></a>Usage</h2>
+      <section>
+        <p>Enable binding of an element via JavaScript:</p>
+        <pre class="prettyprint linenums">$("#example").bsAlerts({'titles': {'warning': '&lt;em&gt;Warning!&lt;/em&gt;'}});</pre>
 
-                  <h3>Markup</h3>
-                  <p>Just add <code>data-alerts="alerts"</code> to your element to bind automatically.</p>
-                  <pre class="prettyprint linenums">&lt;div data-alerts="alerts"&gt;&lt;/div&gt;</pre>
-                </section>
-                <section id="options">
-                  <div class="page-header">
-                      <h1>Options</h1>
-                  </div>
-                  <table class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                       <th style="width: 100px;">Name</th>
-                       <th style="width: 100px;">type</th>
-                       <th style="width: 100px;">default</th>
-                       <th>description</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>titles</td>
-                        <td>object</td>
-                        <td>{}</td>
-                        <td>Optional title for each priority: error, warning, info, success</td>
-                      </tr>
-                      <tr>
-                        <td>ids</td>
-                        <td>string</td>
-                        <td>''</td>
-                        <td>Comma separated list of alert ids to listen for. In addition to the standard events,
-                          events in the form 'set-alert-id-{alert_id}' will also be listened for. Works with
-                          <a href="http://eltimn.github.com/jquery-bs-formalerts/">jQuery-bsFormAlerts</a>.
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>fade</td>
-                        <td>integer</td>
-                        <td>0</td>
-                        <td>If set to an integer greater than 0, the alerts will be faded out and removed after the given number of milliseconds.</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </section>
-                <section id="events">
-                    <div class="page-header">
-                        <h1>Events</h1>
-                    </div>
+        <h3>Markup</h3>
+        <p>Just add <code>data-alerts="alerts"</code> to your element to bind automatically.</p>
+        <pre class="prettyprint linenums">&lt;div data-alerts="alerts"&gt;&lt;/div&gt;</pre>
+      </section>
 
-                    <h3>add-alerts</h3>
-                    <p>The bound element will listen for an add event that will send the alert data as an object. You can also pass an array of alerts, with any priority, and they will all be displayed in their respective color.</p>
-                    <pre class="prettyprint linenums">
+      <h2 class="sub-header"><a id="options"></a>Options</h2>
+      <section>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+             <th style="width: 100px;">Name</th>
+             <th style="width: 100px;">type</th>
+             <th style="width: 100px;">default</th>
+             <th>description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>titles</td>
+              <td>object</td>
+              <td>{}</td>
+              <td>Optional title for each priority: error, warning, info, success</td>
+            </tr>
+            <tr>
+              <td>ids</td>
+              <td>string</td>
+              <td>''</td>
+              <td>Comma separated list of alert ids to listen for. In addition to the standard events,
+                events in the form 'set-alert-id-{alert_id}' will also be listened for. Works with
+                <a href="http://eltimn.github.com/jquery-bs-formalerts/">jQuery-bsFormAlerts</a>.
+              </td>
+            </tr>
+            <tr>
+              <td>fade</td>
+              <td>integer</td>
+              <td>0</td>
+              <td>If set to an integer greater than 0, the alerts will be faded out and removed after the given number of milliseconds.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <h2 class="sub-header"><a id="events"></a>Events</h2>
+      <section id="events">
+        <h3>add-alerts</h3>
+        <p>The bound element will listen for an add event that will send the alert data as an object. You can also pass an array of alerts, with any priority, and they will all be displayed in their respective color.</p>
+        <pre class="prettyprint linenums">
 // send an error alert
 $(document).trigger("add-alerts", {
   message: "This is an error",
@@ -161,65 +150,50 @@ $(document).trigger("add-alerts", [
   }
 ]);</pre>
 
-                    <h3>clear-alerts</h3>
-                    <p>The bound element will listen for a clear event that will clear the alerts.</p>
-                    <pre class="prettyprint linenums">
+        <h3>clear-alerts</h3>
+        <p>The bound element will listen for a clear event that will clear the alerts.</p>
+        <pre class="prettyprint linenums">
 // clear all alerts
 $(document).trigger("clear-alerts");</pre>
 
-                    <h3>set-alert-id-{alertid}</h3>
-                    <p>The bound element will also listen for a set event with an id, if configured to do so. See ids in the Options above.</p>
-                    <pre class="prettyprint linenums">
+        <h3>set-alert-id-{alertid}</h3>
+        <p>The bound element will also listen for a set event with an id, if configured to do so. See ids in the Options above.</p>
+        <pre class="prettyprint linenums">
 // send an alert with id='myid'
 $(document).trigger("set-alert-id-myid", {
   message: "Please enter at least 3 characters",
   priority: "error"
 });</pre>
 
-                <div class="alert alert-info"><strong>Tip:</strong> Copy and paste the above commands into the JavaScript console to see them in action.</div>
-                </section>
-            </div>
-        </div>
+        <div class="alert alert-info"><strong>Tip:</strong> Copy and paste the above commands into the JavaScript console to see them in action.</div>
+      </section>
     </div>
+  </div>
 
-    <footer class="footer">
-      <div class="container">
-        <p>Code licensed under <a href="http://www.opensource.org/licenses/mit-license.php">MIT</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
-      </div>
-    </footer>
+  <a href="https://github.com/eltimn/jquery-bs-alerts"><img style="position: absolute; top: 0; right: 0; border: 0;z-index:10001" src="//s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
 
-    <a href="https://github.com/eltimn/jquery-bs-alerts"><img style="position: absolute; top: 0; right: 0; border: 0;z-index:10001" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
-
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/prettify.js"></script>
-    <script src="js/jquery.bsAlerts.js"></script>
-    <script>
-      $(function(){
-        var $window = $(window);
-        // side bar
-        setTimeout(function () {
-          $('.bs-docs-sidenav').affix({
-            offset: {
-              top: function () { return $window.width() <= 980 ? 250 : 170 }
-            , bottom: 270
-            }
-          })
-        }, 100)
-
-        // make code pretty
-        window.prettyPrint && prettyPrint();
-
-        $("#warn-me").click(function() {
-          $(document).trigger("add-alerts", [
-            {
-              'message': "This is a warning.",
-              'priority': 'warning'
-            }
-          ]);
-        });
+  <script
+    src="//code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"
+  ></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//cdn.rawgit.com/google/code-prettify/master/loader/prettify.js"></script>
+  <script src="js/jquery.bsAlerts.js"></script>
+  <script>
+    $(function(){
+      $("#warn-me").click(function() {
+        $(document).trigger("add-alerts", [
+          {
+            'message': "This is a warning.",
+            'priority': 'warning'
+          }
+        ]);
       });
-    </script>
-  </body>
+
+      prettyPrint();
+    });
+  </script>
+</body>
+
 </html>

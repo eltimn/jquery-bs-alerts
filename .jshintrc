@@ -1,0 +1,17 @@
+{
+  "curly": true,
+  "eqeqeq": true,
+  "eqnull": true,
+  "futurehostile": true,
+  "latedef": "nofunc",
+  "noarg": true,
+  "nocomma": true,
+  "nonbsp": false,
+  "nonew": true,
+  "strict": true,
+  "undef": true,
+  "unused": true,
+  "browser": true,
+  "jquery": true,
+  "predef": { }
+}
