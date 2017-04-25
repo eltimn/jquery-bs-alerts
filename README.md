@@ -2,6 +2,8 @@
 
 > A jQuery plugin for displaying Bootstrap alerts via jQuery events.
 
+[![Build Status](https://travis-ci.org/eltimn/jquery-bs-alerts.svg?branch=master)](https://travis-ci.org/eltimn/jquery-bs-alerts)
+
 ## Requires
 - jQuery
 - Bootstrap
