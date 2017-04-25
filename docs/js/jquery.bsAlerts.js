@@ -119,7 +119,7 @@
       }
     };
 
-    self.attachLIs = function($ul, msgs, usebullets) {
+    self.attachLIs = function($ul, msgs) {
       $.each(msgs, function(ix, it) {
         if (self.options.usebullets) {
           $ul.append($("<li/>").html(it.message));
