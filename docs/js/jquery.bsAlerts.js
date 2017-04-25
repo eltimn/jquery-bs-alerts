@@ -119,14 +119,13 @@
       }
     };
 
-    self.attachLIs = function($ul, msgs, usebullets) {    	
+    self.attachLIs = function($ul, msgs, usebullets) {
       $.each(msgs, function(ix, it) {
         if (self.options.usebullets) {
-        	$ul.append($("<li/>").html(it.message));
+          $ul.append($("<li/>").html(it.message));
         } else {
-        	$ul.append(ix > 0 ? "<br /><br />" + it.message : it.message); 
+          $ul.append(ix > 0 ? "<br /><br />" + it.message : it.message);
         }
-    	  
       });
     };
 

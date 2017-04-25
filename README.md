@@ -6,7 +6,7 @@
 - jQuery
 - Bootstrap
 
-[Documentation](http://eltimn.github.com/jquery-bs-alerts)
+[Documentation](https://eltimn.github.com/jquery-bs-alerts)
 
 [Download](https://github.com/eltimn/jquery-bs-alerts/releases)
 
