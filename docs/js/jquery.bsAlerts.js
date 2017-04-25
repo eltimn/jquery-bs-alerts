@@ -124,7 +124,7 @@
         if (self.options.usebullets) {
           $ul.append($("<li/>").html(it.message));
         } else {
-          $ul.append(ix > 0 ? "<br /><br />" + it.message : it.message);
+          $ul.append(ix > 0 || $ul[0].childNodes.length ? "<br /><br />" + it.message : it.message);
         }
       });
     };
