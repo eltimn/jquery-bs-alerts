@@ -59,7 +59,7 @@
     };
 
     self.fade = function() {
-      $("[data-alerts-container]").fadeOut('slow', function() {
+      $("[data-alerts-container]").fadeOut("slow", function() {
         $(this).remove();
       });
     };
@@ -69,15 +69,16 @@
 
         var priority = bsPriority(msgs[0].priority);
 
-        var $dismissBtn = $('<button/>', {
-          'type':'button',
-          'class':'close',
-          'data-dismiss':'alert',
-          'aria-hidden': true
-        }).html('&times;');
+        var $dismissBtn = $("<button/>", {
+          "type":"button",
+          "class":"close",
+          "data-dismiss":"alert",
+          "aria-hidden": true,
+          "aria-label": "close"
+        }).html("&times;");
 
-        var $ul = $("<ul/>");
-        self.attachLIs($ul, msgs);
+        var $ul = this.options.usebullets ? $("<ul/>") : $("<p/>");
+        self.attachLIs($ul, msgs, this.options.usebullets);
 
         var $container = $("<div/>", {
           "data-alerts-container": priority,
@@ -105,10 +106,10 @@
       if (msgs.length > 0) {
         var $ele = $(this.element);
         var priority = bsPriority(msgs[0].priority);
-        var $container = $("[data-alerts-container='"+priority+"']", $ele);
+        var $container = $("[data-alerts-container=\""+priority+"\"]", $ele);
 
         if ($container.length > 0) {
-          var $ul = $container.find("ul");
+          var $ul = self.options.usebullets ? $container.find("ul") : $container.find("p");
           self.attachLIs($ul, msgs);
         }
         else {
@@ -118,9 +119,14 @@
       }
     };
 
-    self.attachLIs = function($ul, msgs) {
+    self.attachLIs = function($ul, msgs, usebullets) {    	
       $.each(msgs, function(ix, it) {
-        $ul.append($("<li/>").html(it.message));
+        if (self.options.usebullets) {
+        	$ul.append($("<li/>").html(it.message));
+        } else {
+        	$ul.append(ix > 0 ? "<br /><br />" + it.message : it.message); 
+        }
+    	  
       });
     };
 
@@ -161,13 +167,13 @@
   $.fn.bsAlerts = function(option) {
     return this.each(function () {
       var $this = $(this),
-          data = $this.data('bsAlerts'),
-          options = typeof option === 'object' && option;
+          data = $this.data("bsAlerts"),
+          options = typeof option === "object" && option;
 
       if (!data) {
-        $this.data('bsAlerts', (data = new BsAlerts(this, options)));
+        $this.data("bsAlerts", (data = new BsAlerts(this, options)));
       }
-      if (typeof option === 'string') {
+      if (typeof option === "string") {
         data[option]();
       }
     });
@@ -177,8 +183,9 @@
 
   $.fn.bsAlerts.defaults = {
     titles: {},
-    ids: '',
-    fade: '0'
+    ids: "",
+    fade: "0",
+    usebullets: true
   };
 
   /* BsAlerts no conflict
@@ -194,7 +201,7 @@
    * ============ */
 
   $(document).ready(function () {
-    $('[data-alerts="alerts"]').each(function () {
+    $("[data-alerts=\"alerts\"]").each(function () {
       var $ele = $(this);
       $ele.bsAlerts($ele.data());
     });
