@@ -133,7 +133,7 @@
   
           if ($container.length > 0) {
             var $ul = self.options.usebullets ? $container.find("ul") : $container.find("p");
-            self.attachLIs($ul, msgs);
+            self.attachLIs($ul, msgs, self.options.usebullets);
           }
           else {
             $container = self.buildNoticeContainer(msgs);
@@ -145,7 +145,7 @@
 
     self.attachLIs = function($ul, msgs, usebullets) {    	
       $.each(msgs, function(ix, it) {
-        if (self.options.usebullets) {
+        if (usebullets) {
         	$ul.append($("<li/>").html(it.message));
         } else {
         	$ul.append(ix > 0 || $ul[0].childNodes.length ? "<br /><br />" + it.message : it.message);
