@@ -8,7 +8,6 @@
     "url": "git@github.com:eltimn/jquery-bs-alerts.git"
   },
   "devDependencies": {
-    "bower": "1.8.0",
     "del": "2.2.2",
     "gulp": "3.9.1",
     "gulp-banner": "0.1.3",
