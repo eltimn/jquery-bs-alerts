@@ -18,7 +18,13 @@
     });
 
     $(document).on("clear-alerts", function() {
-      self.clearAlerts();
+      if (arguments && arguments[1] && arguments[1].length) {
+        // clearing only alerts for a specific element
+        self.clearAlerts(arguments[1]);
+      } else {
+        // clear all alerts
+        self.clearAlerts();
+      }
     });
 
     $.each(this.options.ids.split(","), function(ix, alert_id) {
@@ -40,8 +46,14 @@
       titles[bsPriority(key)] = title;
     });
 
-    self.clearAlerts = function() {
-      $(this.element).html("");
+    self.clearAlerts = function(destinationId) {
+      // clearing only alerts for a specific element
+      if (destinationId && destinationId.length) {
+        $("#" + destinationId).html("");      
+      } else {
+        // clear all alerts
+        $(this.element).html("");
+      }
     };
 
     self.addAlerts = function(data) {
@@ -105,27 +117,40 @@
     self.addAlertsToContainer = function(msgs) {
       if (msgs.length > 0) {
         var $ele = $(this.element);
-        var priority = bsPriority(msgs[0].priority);
-        var $container = $("[data-alerts-container=\""+priority+"\"]", $ele);
-
-        if ($container.length > 0) {
-          var $ul = self.options.usebullets ? $container.find("ul") : $container.find("p");
-          self.attachLIs($ul, msgs);
+        
+        // by default, display this message
+        var okToPush = true;
+        
+        // if a destination was specified, then only push the message to that specific container
+        if (msgs[0] && msgs[0].destination && msgs[0].destination !== $ele.attr("id")) {
+          okToPush = false;
         }
-        else {
-          $container = self.buildNoticeContainer(msgs);
-          $ele.append($container);
+        
+        // if this message is intended for this container, display it  
+        if (okToPush) {
+          var priority = bsPriority(msgs[0].priority);
+          var $container = $("[data-alerts-container=\""+priority+"\"]", $ele);
+  
+          if ($container.length > 0) {
+            var $ul = self.options.usebullets ? $container.find("ul") : $container.find("p");
+            self.attachLIs($ul, msgs, self.options.usebullets);
+          }
+          else {
+            $container = self.buildNoticeContainer(msgs);
+            $ele.append($container);
+          }
         }
       }
     };
 
-    self.attachLIs = function($ul, msgs) {
+    self.attachLIs = function($ul, msgs, usebullets) {    	
       $.each(msgs, function(ix, it) {
-        if (self.options.usebullets) {
-          $ul.append($("<li/>").html(it.message));
+        if (usebullets) {
+        	$ul.append($("<li/>").html(it.message));
         } else {
-          $ul.append(ix > 0 || $ul[0].childNodes.length ? "<br /><br />" + it.message : it.message);
+        	$ul.append(ix > 0 || $ul[0].childNodes.length ? "<br /><br />" + it.message : it.message);
         }
+    	  
       });
     };
 
@@ -202,6 +227,7 @@
   $(document).ready(function () {
     $("[data-alerts=\"alerts\"]").each(function () {
       var $ele = $(this);
+      
       $ele.bsAlerts($ele.data());
     });
   });

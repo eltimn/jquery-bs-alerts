@@ -33,6 +33,7 @@
         <li><a href="#usage">Usage</a></li>
         <li><a href="#options">Options</a></li>
         <li><a href="#events">Events</a></li>
+        <li><a href="#multiple-containers">Multiple Containers per Page Example</a></li>
       </ul>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -67,7 +68,7 @@ $("#warn-me").click(function() {
   $(document).trigger("add-alerts", [
     {
       "message": "This is a warning.",
-      "priority": 'warning'
+      "priority": "warning"
     }
   ]);
 });
@@ -173,6 +174,84 @@ $(document).trigger("set-alert-id-myid", {
 
         <div class="alert alert-info"><strong>Tip:</strong> Copy and paste the above commands into the JavaScript console to see them in action.</div>
       </section>
+    
+    <h2 class="sub-header"><a id="multiple-containers"></a>Multiple Containers per Page Example</h2>
+      <section id="multiple-containers">
+        <div id="generic-error-container" data-alerts="alerts" data-titles='{"warning": "<em>Warning!</em>", "error": "<em>Error!</em>"}' data-ids="myid"></div>
+        <br /><br /><br />
+        <button id="warn-me-first" class="btn trigger-bsalert">Click to see a warning alert in both containers</button>
+        <br /><br />
+        <button id="warn-me-more" class="btn trigger-bsalert">Click to add another warning alert in both containers</button>
+        <br /><br />
+        <button id="clear-me" class="btn trigger-bsalert">Clear all alerts</button>
+        <hr>
+        <div id="specific-error-container" data-alerts="alerts" data-titles='{"warning": "<em>Warning!</em>", "error": "<em>Error!</em>"}' data-ids="myid"></div>
+        <br /><br /><br />
+        <button id="warn-me-second" class="btn trigger-bsalert">Click to see a warning alert in just the second container</button>
+        <br /><br />
+        <button id="warn-me-again" class="btn trigger-bsalert">Click to add another warning alert in just the second container</button>
+        <br /><br />
+        <button id="clear-just-me" class="btn trigger-bsalert">Clear just second container alerts</button>
+        <hr />
+<pre class="prettyprint linenums">
+&lt;div id="generic-error-container" data-alerts="alerts" data-titles='{"warning": "&lt;em&gt;Warning!&lt;/em&gt;", "error": "&lt;em&gt;Error!&lt;/em&gt;"}' data-ids="myid"&gt;&lt;/div&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;button id="warn-me" class="btn trigger-bsalert"&gt;Click to see a warning alert in both containers&lt;/button&gt;
+&lt;br /&gt;&lt;br /&gt;
+&lt;button id="warn-me-more" class="btn trigger-bsalert"&gt;Click to add another warning alert in both containers&lt;/button&gt;
+&lt;br /&gt;&lt;br /&gt;
+&lt;button id="clear-me" class="btn trigger-bsalert"&gt;Clear all alerts&lt;/button&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;div id="specific-error-container" data-alerts="alerts" data-titles='{"warning": "&lt;em&gt;Warning!&lt;/em&gt;", "error": "&lt;em&gt;Error!&lt;/em&gt;"}' data-ids="myid"&gt;&lt;/div&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;button id="warn-me-second" class="btn trigger-bsalert"&gt;Click to see a warning alert in just the second container&lt;/button&gt;
+&lt;br /&gt;&lt;br /&gt;
+&lt;button id="warn-me-again" class="btn trigger-bsalert"&gt;Click to add another warning alert in just the second container&lt;/button&gt;
+&lt;br /&gt;&lt;br /&gt;
+&lt;button id="clear-just-me" class="btn trigger-bsalert"&gt;Clear just second container alerts&lt;/button&gt;
+&lt;script&gt;
+$("#warn-me").click(function() {
+  $(document).trigger("clear-alerts");
+  $(document).trigger("add-alerts", {
+    message: "This is a warning.",
+    priority: "warning"
+  });
+});
+
+$("#warn-me-more").click(function() {
+  $(document).trigger("add-alerts", {
+    message: "This is a warning.",
+    priority: "warning"
+  });
+});
+
+$("#clear-me").click(function() {
+  $(document).trigger("clear-alerts");
+});
+
+$("#warn-me-second").click(function() {
+  $(document).trigger("clear-alerts", "specific-error-container");
+  $(document).trigger("add-alerts", {
+    message: "This is a specific warning.",
+    priority: "warning",
+    destination: "specific-error-container"
+  });
+});
+
+$("#warn-me-again").click(function() {
+  $(document).trigger("add-alerts", {
+    message: "This is a specific warning.",
+    priority: "warning",
+    destination: "specific-error-container"
+  });
+});
+
+$("#clear-just-me").click(function() {
+  $(document).trigger("clear-alerts", "specific-error-container");
+});
+&lt;/script&gt;
+</pre>
+      </section>
 
       <footer class="footer">
         <div class="container">
@@ -201,6 +280,46 @@ $(document).trigger("set-alert-id-myid", {
             "priority": 'warning'
           }
         ]);
+      });
+      
+      $("#warn-me").click(function() {
+        $(document).trigger("clear-alerts");
+        $(document).trigger("add-alerts", {
+          message: "This is a warning.",
+          priority: "warning"
+        });
+      });
+
+      $("#warn-me-more").click(function() {
+        $(document).trigger("add-alerts", {
+          message: "This is a warning.",
+          priority: "warning"
+        });
+      });
+
+      $("#clear-me").click(function() {
+        $(document).trigger("clear-alerts");
+      });
+
+      $("#warn-me-second").click(function() {
+        $(document).trigger("clear-alerts", "specific-error-container");
+        $(document).trigger("add-alerts", {
+          message: "This is a specific warning.",
+          priority: "warning",
+          destination: "specific-error-container"
+        });
+      });
+
+      $("#warn-me-again").click(function() {
+        $(document).trigger("add-alerts", {
+          message: "This is a specific warning.",
+          priority: "warning",
+          destination: "specific-error-container"
+        });
+      });
+
+      $("#clear-just-me").click(function() {
+        $(document).trigger("clear-alerts", "specific-error-container");
       });
 
       prettyPrint();
